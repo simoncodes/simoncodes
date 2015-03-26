@@ -1,5 +1,7 @@
 # Distraction game based on SimonSays
 
+[![Join the chat at https://gitter.im/simoncodes/simoncodes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/simoncodes/simoncodes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Problem: 
 
 Research software engineers often work in environments unsuitable for programming. Often management, colleagues don't recognise importance of environment.
