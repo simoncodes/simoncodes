@@ -24,7 +24,8 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 			RESPONSE = [], // USER PLAYBACK
 			CTRL = document.getElementById('ctrl'),
 			SCORE = 0,
-			SCOREKEEPER = document.getElementById('scoreNumber'); // CONTROL BAR
+                        DISTRACTCOUNTER = [],
+		        SCOREKEEPER = document.getElementById('scoreNumber'); // CONTROL BAR
 
 		this.init = function() {
 			var reset = document.getElementById('reset'),
@@ -119,7 +120,7 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
  				i = 0;
  			document.getElementById('endScreen').className = 'active';
  			document.getElementById('finalScore').innerHTML = SCORE;
- 			setTimeout(function() {
+		        setTimeout(function() {
 	 			(function play() { // recursive loop to play fail music
 					setTimeout( function() {
 						SELF.playSingle( INPUTS[ failPattern[i] ]);
@@ -158,6 +159,7 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 			if (getRandomInt(1, 5) === 5) {
 					// open popup window here
 					alert();
+                                       DISTRACTCOUNTER[DISTRACTCOUNTER.length] = SCORE;
 			}
 		}
 	}
