@@ -120,6 +120,8 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
  				i = 0;
  			document.getElementById('endScreen').className = 'active';
  			document.getElementById('finalScore').innerHTML = SCORE;
+		    document.getElementById('totalDistractions').innerHTML = DISTRACTCOUNTER.length;
+		    this.feedback();
 		        setTimeout(function() {
 	 			(function play() { // recursive loop to play fail music
 					setTimeout( function() {
@@ -137,7 +139,7 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 		this.playPattern = function() { // playback a pattern
 			var next = Math.random() * INPUTS.length >> 0,
 				i = 0;
-			PATTERN[PATTERN.length] = next;
+		    PATTERN[PATTERN.length] = next;
 			(function play() { // recursive loop to play pattern
 				setTimeout( function() {
 					SELF.playSingle( INPUTS[ PATTERN[i] ]);
@@ -162,7 +164,47 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
                                        DISTRACTCOUNTER[DISTRACTCOUNTER.length] = SCORE;
 			}
 		}
+
+	     this.feedback = function() {
+		 var DISTRACTCOUNTERBIN = new Array(SCORE);
+		 for (var i = 0; i <= SCORE; i++) DISTRACTCOUNTERBIN[i] = 0;
+		 for (var i=0; i <= DISTRACTCOUNTER.length; i++){
+		     DISTRACTCOUNTERBIN[DISTRACTCOUNTER[i] + 1]++;
+		 }
+	    var lineChartData = {
+	     	labels : Array.apply(null, {length: SCORE + 1}).map(Number.call, Number),
+	     	datasets : [
+	    		{
+	    		    label: "Score vs Interruptions",
+	    		    fillColor : "rgba(220,220,220,0.2)",
+	    		    strokeColor : "rgba(220,220,220,1)",
+	    		    pointColor : "rgba(220,220,220,1)",
+	    		    pointStrokeColor : "#fff",
+	    		    pointHighlightFill : "#fff",
+	    		    pointHighlightStroke : "rgba(220,220,220,1)",
+	    		    data : Array.apply(null, {length: SCORE + 1}).map(Number.call, Number) // List of points from interruptcounter
+	    		},
+	    		{
+	    		    label: "Interruptions",
+	    		    fillColor : "rgba(220,220,220,0.2)",
+	    		    strokeColor : "rgba(220,220,220,1)",
+	    		    pointColor : "rgba(220,0,0,1)",
+	    		    pointStrokeColor : "#fff",
+	    		    pointHighlightFill : "#fff",
+	    		    pointHighlightStroke : "rgba(220,220,220,1)",
+	    		    data : DISTRACTCOUNTERBIN
+	    		}
+	    	    ]
+	    }
+		
+		 var ctx = document.getElementById("canvas").getContext("2d");
+		 window.myLine = new Chart(ctx).Line(lineChartData, {
+	             responsive: true,
+	             showTooltips: false
+		 })
+	     }
 	}
+
 
 
 	MIDI.loadPlugin(function() {
