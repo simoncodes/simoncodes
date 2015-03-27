@@ -16,6 +16,12 @@ Find a friendly way of demonstrating the importance of environment. Game that ha
 - modular, so people can design new annoying task
 - produce metrics. Does distraction really affect tasks?
 
+## Installation
+
+1. Clone the repository to a local folder. e.g. "git clone git@github.com:simoncodes/simoncodes.git"
+2. From the cloned directory, run "python -m SimpleHTTPServer"
+3. Open a browser and view the site at: http://0.0.0.0:8000/
+
 ## Notes
 
 Project pitch on [Google Docs](https://docs.google.com/document/d/1ovNA0w4IFk9e1C27brcA0cVlQPitPR70Lah6u2wvQT8/edit?pli=1)
