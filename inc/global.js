@@ -151,13 +151,28 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 			})(); // end recursion
 		}
 
+		this.youtube = function() {
+			var gifURLs = [
+				"img/img1.gif",
+				"img/img2.gif",
+				"img/img3.gif"
+			];
+
+			document.getElementById('gifFrame').src = gifURLs[Math.floor(Math.random() * gifURLs.length)]
+			var dialog = document.getElementById('distractWindow');
+      dialog.showModal();
+
+    	document.getElementById('exitDistract').onclick = function() {
+        dialog.close();
+    	};
+		}
+
 		this.distract = function() {
 			function getRandomInt(min, max) {
     		return Math.floor(Math.random() * (max - min + 1)) + min;
 			}
-			if (getRandomInt(1, 5) === 5) {
-					// open popup window here
-					alert();
+			if (getRandomInt(1, 3) === 3) {
+				SELF.youtube();
 			}
 		}
 	}
