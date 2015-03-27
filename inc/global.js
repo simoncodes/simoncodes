@@ -69,7 +69,7 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 		this.inputSingle = function(el) {
 			if(LISTEN === true ) {
 				SELF.playSingle(el);
-				// randomly popup sth here
+				SELF.distract();
 				SELF.record(el);
 			}
 		}
@@ -150,7 +150,17 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
 				SPEED + SPACING)
 			})(); // end recursion
 		}
+
+		this.distract = function() {
+			function getRandomInt(min, max) {
+    		return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+			if (getRandomInt(1, 5) === 5) {
+				// open popup window here
+			}
+		}
 	}
+
 
 	MIDI.loadPlugin(function() {
 		var simonSays = new Simon;
