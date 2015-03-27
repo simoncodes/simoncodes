@@ -166,7 +166,9 @@ var loader = new widgets.Loader({
       var gifURLs = [
         "img/img1.gif",
         "img/img2.gif",
-        "img/img3.gif"
+        "img/img3.gif",
+				"img/img4.gif",
+				"img/img5.gif"
       ];
 
       document.getElementById('gifFrame').src = gifURLs[Math.floor(Math.random() * gifURLs.length)];
