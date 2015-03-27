@@ -28,12 +28,14 @@ var loader = new widgets.Loader({
       CTRL = document.getElementById('ctrl'),
       SCORE = 0,
       SCOREKEEPER = document.getElementById('scoreNumber'), // CONTROL BAR
+      DISTRACTCOUNTERBIN = [],
       DISTRACTCOUNTER = [];
 
 
     this.init = function() {
       var reset = document.getElementById('reset'),
-        start = document.getElementById('start');
+        start = document.getElementById('start'),
+				fetch = document.getElementById('fetch');
       // connect color to sound
       for (var i = 0; i < INPUTS.length; i++) {
         Event.add(INPUTS[i], 'mousedown', function(event) {
@@ -41,12 +43,16 @@ var loader = new widgets.Loader({
         });
       }
       document.getElementById('intro').className = 'active';
+			fetch.onclick = function() {
+				return false;
+			};
       reset.onclick = function() {
         return false;
       };
       start.onclick = function() {
         return false;
       };
+      Event.add(fetch, 'click', this.fetch());
       Event.add(reset, 'click', this.reset());
       Event.add(start, 'click', this.reset());
       // add keypress events
@@ -59,6 +65,14 @@ var loader = new widgets.Loader({
         }
 
       });
+    };
+
+    this.fetch = function() {
+      return function() {
+        var resultString = JSON.stringify(DISTRACTCOUNTERBIN);
+				var blob = new Blob([resultString], {type: "text/plain;charset=utf-8"});
+				saveAs(blob, "performance.txt");
+      };
     };
 
     this.reset = function() { // start/restart game
@@ -75,7 +89,7 @@ var loader = new widgets.Loader({
       PATTERN = [];
       SCORE = 0;
       RESPONSE = [];
-			DISTRACTCOUNTER = [];
+      DISTRACTCOUNTER = [];
     };
 
     this.inputSingle = function(el) {
@@ -204,7 +218,7 @@ var loader = new widgets.Loader({
     };
 
     this.feedback = function() {
-      var DISTRACTCOUNTERBIN = new Array(SCORE);
+      DISTRACTCOUNTERBIN = new Array(SCORE);
       for (var i = 0; i <= SCORE; i++) {
         DISTRACTCOUNTERBIN[i] = 0;
       }

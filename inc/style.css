@@ -254,11 +254,11 @@ body .button {
 	cursor: pointer;
 	background-image: linear-gradient(top, #43A4FF 0%, #255CFF 100%);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #43A4FF), color-stop(1, #255CFF));
-	background-image: -moz-linear-gradient(top,  #43A4FF 0%, #255CFF 100%);
+	background-image: -moz-linear-gradient(top,  #43A4FF 0%, #255CFF 50%);
 	border-radius: 100px;
 	box-shadow: 0 0 5px #000;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
-	font-size: 1.5em;
+	font-size: 1em;
 }
 
 body .button:HOVER {
@@ -366,7 +366,7 @@ p.subnote a {
 	font-size: inherit;
 }
 
-gifFrame {
+distractWindow {
 	width: 500;
-	height: 500;
+	height: 500
 }
