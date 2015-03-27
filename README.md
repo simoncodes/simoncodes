@@ -18,8 +18,7 @@ Find a friendly way of demonstrating the importance of environment. Game that ha
 
 ## Notes
 
-Link to project on Google Docs:
-[https://docs.google.com/document/d/1ovNA0w4IFk9e1C27brcA0cVlQPitPR70Lah6u2wvQT8/edit?pli=1](https://docs.google.com/document/d/1ovNA0w4IFk9e1C27brcA0cVlQPitPR70Lah6u2wvQT8/edit?pli=1)
+Project pitch on [Google Docs](https://docs.google.com/document/d/1ovNA0w4IFk9e1C27brcA0cVlQPitPR70Lah6u2wvQT8/edit?pli=1)
 
 <!-- 
 
