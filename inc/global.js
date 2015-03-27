@@ -156,7 +156,8 @@ var loader = new widgets.Loader({ message: "Downloading: 0%" });
     		return Math.floor(Math.random() * (max - min + 1)) + min;
 			}
 			if (getRandomInt(1, 5) === 5) {
-				// open popup window here
+					// open popup window here
+					alert();
 			}
 		}
 	}
