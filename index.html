@@ -48,7 +48,14 @@
 
 	<div id="endScreen">
 		<h2>GREAT WORK!</h2>
-		Final score: <span id="finalScore">0</span>
+		Final score: <span id="finalScore">0</span><br>
+		With <span id="totalDistractions">0</span> distractions!!<br>
+		  <div style="width:30%">
+		   <div>
+		      <canvas id="canvas" class="plot" height="300" width="600"></canvas>
+		    </div>
+		  </div>
+
 		<a href="#" id="reset" class="button">Reset</a>
 	</div>
 
@@ -65,6 +72,7 @@
 	</dialog>
 
 
+	<script type="text/javascript" src="inc/Chart.js"></script>
 	<script type="text/javascript" src="inc/Event.js"></script>
 	<script type="text/javascript" src="inc/Loader.js"></script>
 	<script type="text/javascript" src="inc/MIDI.js/js/DOMLoader.script.js"></script>
