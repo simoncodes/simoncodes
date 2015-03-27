@@ -26,13 +26,11 @@
 	</script>
 </head>
 <body>
-	<a href="http://uxmonk.com" id="backToMonk">&laquo; UX Monk</a>
-
 	<div id="intro">
 		<h1>Simon Says</h1>
 		<p class="subnote">Inspired by <a href="http://www.youtube.com/watch?v=KVzZVYtt64I">Simon</a>&trade;</p>
 		<div class="bodyContent">
-			<p>I'll play a melody, and you play it back. Ready?</p>
+			<p>Repeat the sequence after me. Don't get distracted!</p>
 			<div class="controls"></div>
 			<a href="#" id="start" class="button">Start!</a>
 
@@ -65,6 +63,15 @@
 		<div class="topbar"></div>
 		<div id="score"><span class="title">Score:</span> <span id="scoreNumber">0</span></div>
 	</div>
+
+	<dialog id="distractWindow">
+		<h2>KABOOOOM!</h2>
+		<iframe id="gifFrame" src="" width="300" height="300">
+		</iframe>
+		<button id="exitDistract">Exit</button>
+	</dialog>
+
+
 	<script type="text/javascript" src="inc/Chart.js"></script>
 	<script type="text/javascript" src="inc/Event.js"></script>
 	<script type="text/javascript" src="inc/Loader.js"></script>
