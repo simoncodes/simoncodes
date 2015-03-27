@@ -9,7 +9,7 @@ var loader = new widgets.Loader({
 
 */
 
-(function() {
+(function(Chart) {
   "use strict";
   // REMOVE BLANK CHARS FROM BEGINNING AND END OF STRING
   String.prototype.trim = function() {
@@ -27,7 +27,9 @@ var loader = new widgets.Loader({
       RESPONSE = [], // USER PLAYBACK
       CTRL = document.getElementById('ctrl'),
       SCORE = 0,
-      SCOREKEEPER = document.getElementById('scoreNumber'); // CONTROL BAR
+      SCOREKEEPER = document.getElementById('scoreNumber'), // CONTROL BAR
+      DISTRACTCOUNTER = [];
+
 
     this.init = function() {
       var reset = document.getElementById('reset'),
@@ -128,6 +130,9 @@ var loader = new widgets.Loader({
         i = 0;
       document.getElementById('endScreen').className = 'active';
       document.getElementById('finalScore').innerHTML = SCORE;
+      document.getElementById('totalDistractions').innerHTML = DISTRACTCOUNTER.length;
+      SELF.feedback();
+
       setTimeout(function() {
         (function play() { // recursive loop to play fail music
           setTimeout(function() {
@@ -140,6 +145,7 @@ var loader = new widgets.Loader({
             SPEED * 0.7 >> 0);
         })(); // end recursion
       }, SPACING);
+
     };
 
     this.playPattern = function() { // playback a pattern
@@ -162,13 +168,19 @@ var loader = new widgets.Loader({
       })(); // end recursion
     };
 
+    this.saveStats = function() {
+      var stats = [1, 2, 3];
+      var statsJSON = JSON.parse(stats);
+
+    };
+
     this.youtube = function() {
       var gifURLs = [
         "img/img1.gif",
         "img/img2.gif",
         "img/img3.gif",
-				"img/img4.gif",
-				"img/img5.gif"
+        "img/img4.gif",
+        "img/img5.gif"
       ];
 
       document.getElementById('gifFrame').src = gifURLs[Math.floor(Math.random() * gifURLs.length)];
@@ -186,8 +198,53 @@ var loader = new widgets.Loader({
       }
       if (getRandomInt(1, 3) === 3) {
         SELF.youtube();
+        DISTRACTCOUNTER[DISTRACTCOUNTER.length] = SCORE;
       }
     };
+
+    this.feedback = function() {
+      var DISTRACTCOUNTERBIN = new Array(SCORE);
+      for (var i = 0; i <= SCORE; i++) {
+        DISTRACTCOUNTERBIN[i] = 0;
+      }
+      for (var j = 0; j <= DISTRACTCOUNTER.length; j++) {
+        DISTRACTCOUNTERBIN[DISTRACTCOUNTER[j] + 1]++;
+      }
+
+      var lineChartData = {
+        labels: Array.apply(null, {
+          length: SCORE + 1
+        }).map(Number.call, Number),
+        datasets: [{
+          label: "Score vs Interruptions",
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: Array.apply(null, {
+              length: SCORE + 1
+            }).map(Number.call, Number) // List of points from interruptcounter
+        }, {
+          label: "Interruptions",
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,0,0,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: DISTRACTCOUNTERBIN
+        }]
+      };
+
+      var ctx = document.getElementById("canvas").getContext("2d");
+      window.myLine = new Chart(ctx).Line(lineChartData, {
+        responsive: true,
+        showTooltips: false
+      });
+    };
+
   };
 
 
@@ -198,4 +255,4 @@ var loader = new widgets.Loader({
   }, "piano", "./inc/MIDI.js/"); // specifying a path doesn't work
 
 
-})();
+})(Chart);
