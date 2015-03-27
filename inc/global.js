@@ -75,6 +75,7 @@ var loader = new widgets.Loader({
       PATTERN = [];
       SCORE = 0;
       RESPONSE = [];
+			DISTRACTCOUNTER = [];
     };
 
     this.inputSingle = function(el) {
